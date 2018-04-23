@@ -82,7 +82,7 @@ namespace Poker
 
 			//	Any duplicates?
 			//	if so, then it can't possibly be a straight.
-			if (Pair(hand))
+			if (Pair(hand) || ThreeOfAKind(hand) || FourOfAKind(hand))
 			{
 				return false;
 			}
@@ -90,14 +90,14 @@ namespace Poker
 			return ordered[0].Value == ordered[4].Value + 4;
 		}
 
-		//	Anything where the Ace is not > King
+		//	Anything where the Ace is > King
 		private static bool HighStraight(Hand hand)
 		{
 			var ordered = hand.OrderByDescending(a => a.Value).ToList();
 
 			//	Any duplicates?
 			//	if so, then it can't possibly be a straight.
-			if (Pair(hand))
+			if (Pair(hand) || ThreeOfAKind(hand) || FourOfAKind(hand))
 			{
 				return false;
 			}
