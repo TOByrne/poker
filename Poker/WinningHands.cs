@@ -88,6 +88,10 @@ namespace Poker
 		{
 			//  Explicitly checking for a high-straight, so look for an ACE and set the value to 14
 			var checkHand = hand.Copy();
+			var hasAce = checkHand.Count(c => c.Value == 1) > 0;
+
+			if (!hasAce) return false;
+
 			foreach (var card in checkHand)
 			{
 				if (card.Value == 1)
@@ -95,9 +99,9 @@ namespace Poker
 					card.Value = 14;
 				}
 			}
-			var ordered = checkHand.OrderBy(a => a.Value).ToList();
+			var ordered = checkHand.OrderByDescending(a => a.Value).ToList();
 
-			if (ordered[0].Value + 4 == ordered[4].Value)
+			if (ordered[0].Value == ordered[4].Value + 4)
 			{
 				bestHand = checkHand;
 				return true;
@@ -123,7 +127,7 @@ namespace Poker
 		private static bool TwoPair(Hand hand, Hand bestHand)
 		{
 			//see if there are 2 lots of exactly 2 cards card the same rank.
-			return hand.GroupBy(card => card.Value).Count(group => group.Count() >= 2) == 2;
+			return hand.GroupBy(card => card.Value).Count(group => group.Count() >= 2) >= 2;
 		}
 
 		private static bool Pair(Hand hand, Hand bestHand)
