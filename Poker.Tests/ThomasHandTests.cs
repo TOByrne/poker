@@ -159,76 +159,160 @@ namespace Poker.Tests
 			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 
-		/*
 		[Test]
 		public void PairTest1()
 		{
-			PokerHand test1 = new PokerHand("AD TS QD JS 6D 7S AS");
-			PokerHand.HandReducer(test1);
-			char[] seq = new char[] { 'A', 'A', 'Q', 'J', 'T' };
-			for (int u = 0; u < test1.straightArr.Length; u++)
+			//PokerHand test1 = new PokerHand("AD TS QD JS 6D 7S AS");
+			//PokerHand.HandReducer(test1);
+			//char[] seq = new char[] { 'A', 'A', 'Q', 'J', 'T' };
+
+			var hand = new Hand
 			{
+				new Card(1, Card.CardSuit.Diamonds),
+				new Card(10, Card.CardSuit.Spades),
+				new Card(12, Card.CardSuit.Diamonds),
+				new Card(11, Card.CardSuit.Spades),
+				new Card(6, Card.CardSuit.Diamonds),
+				new Card(7, Card.CardSuit.Spades),
+				new Card(1, Card.CardSuit.Spades),
+			};
 
-				Assert.AreEqual(test1.straightArr[u], seq.ToArray()[u]);
-			}
+			Hand bestHand = new Hand();
+			Hand expectedBest = new Hand
+			{
+				new Card(14, Card.CardSuit.Diamonds),
+				new Card(14, Card.CardSuit.Spades),
+			};
 
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 
 		[Test]
 		public void PairTest2()
 		{
-			PokerHand test1 = new PokerHand("AD TS QD JS 6D 2H 2S");
-			PokerHand.HandReducer(test1);
-			char[] seq = new char[] { '2', '2', 'A', 'Q', 'J' };
-			for (int u = 0; u < test1.straightArr.Length; u++)
+			//PokerHand test1 = new PokerHand("AD TS QD JS 6D 2H 2S");
+			//PokerHand.HandReducer(test1);
+			//char[] seq = new char[] { '2', '2', 'A', 'Q', 'J' };
+
+
+			var hand = new Hand
 			{
+				new Card(1, Card.CardSuit.Diamonds),
+				new Card(10, Card.CardSuit.Spades),
+				new Card(12, Card.CardSuit.Diamonds),
+				new Card(11, Card.CardSuit.Spades),
+				new Card(6, Card.CardSuit.Diamonds),
+				new Card(2, Card.CardSuit.Hearts),
+				new Card(2, Card.CardSuit.Spades),
+			};
 
-				Assert.AreEqual(test1.straightArr[u], seq.ToArray()[u]);
-			}
+			Hand bestHand = new Hand();
+			Hand expectedBest = new Hand
+			{
+				new Card(2, Card.CardSuit.Hearts),
+				new Card(2, Card.CardSuit.Spades)
+			};
 
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 
 		[Test]
 		public void FullTest1()
 		{
-			PokerHand test1 = new PokerHand("AD AS AH 2S 2D JS JD");
-			PokerHand.HandReducer(test1);
-			char[] seq = new char[] { 'A', 'A', 'A', 'J', 'J' };
-			for (int u = 0; u < test1.straightArr.Length; u++)
+			//PokerHand test1 = new PokerHand("AD AS AH 2S 2D JS JD");
+			//PokerHand.HandReducer(test1);
+			//char[] seq = new char[] { 'A', 'A', 'A', 'J', 'J' };
+
+
+			var hand = new Hand
 			{
+				new Card(1, Card.CardSuit.Diamonds),
+				new Card(1, Card.CardSuit.Spades),
+				new Card(1, Card.CardSuit.Hearts),
+				new Card(2, Card.CardSuit.Spades),
+				new Card(2, Card.CardSuit.Diamonds),
+				new Card(11, Card.CardSuit.Spades),
+				new Card(11, Card.CardSuit.Diamonds),
+			};
 
-				Assert.AreEqual(test1.straightArr[u], seq.ToArray()[u]);
-			}
+			Hand bestHand = new Hand();
+			Hand expectedBest = new Hand
+			{
+				new Card(14, Card.CardSuit.Diamonds),
+				new Card(14, Card.CardSuit.Hearts),
+				new Card(14, Card.CardSuit.Spades),
+				new Card(11, Card.CardSuit.Diamonds),
+				new Card(11, Card.CardSuit.Spades)
+			};
 
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 
 		[Test]
 		public void FullTest2()
 		{
-			PokerHand test1 = new PokerHand("AD TS AH TD 2D 2S AS");
-			PokerHand.HandReducer(test1);
-			char[] seq = new char[] { 'A', 'A', 'A', 'T', 'T' };
-			for (int u = 0; u < test1.straightArr.Length; u++)
+			//PokerHand test1 = new PokerHand("AD TS AH TD 2D 2S AS");
+			//PokerHand.HandReducer(test1);
+			//char[] seq = new char[] { 'A', 'A', 'A', 'T', 'T' };
+
+			var hand = new Hand
 			{
+				new Card(1, Card.CardSuit.Diamonds),
+				new Card(10, Card.CardSuit.Spades),
+				new Card(1, Card.CardSuit.Hearts),
+				new Card(10, Card.CardSuit.Diamonds),
+				new Card(2, Card.CardSuit.Diamonds),
+				new Card(2, Card.CardSuit.Spades),
+				new Card(1, Card.CardSuit.Spades),
+			};
 
-				Assert.AreEqual(test1.straightArr[u], seq.ToArray()[u]);
-			}
+			Hand bestHand = new Hand();
+			Hand expectedBest = new Hand
+			{
+				new Card(14, Card.CardSuit.Diamonds),
+				new Card(14, Card.CardSuit.Hearts),
+				new Card(14, Card.CardSuit.Spades),
+				new Card(10, Card.CardSuit.Diamonds),
+				new Card(10, Card.CardSuit.Spades)
+			};
 
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 
 		[Test]
 		public void FullTest3()
 		{
-			PokerHand test1 = new PokerHand("TD TS 6D 2S 6D 2H 6S");
-			PokerHand.HandReducer(test1);
-			char[] seq = new char[] { '6', '6', '6', 'T', 'T' };
-			for (int u = 0; u < test1.straightArr.Length; u++)
+			//PokerHand test1 = new PokerHand("TD TS 6D 2S 6D 2H 6S");
+			//PokerHand.HandReducer(test1);
+			//char[] seq = new char[] { '6', '6', '6', 'T', 'T' };
+
+			var hand = new Hand
 			{
+				new Card(10, Card.CardSuit.Diamonds),
+				new Card(10, Card.CardSuit.Spades),
+				new Card(6, Card.CardSuit.Diamonds),
+				new Card(2, Card.CardSuit.Spades),
+				new Card(6, Card.CardSuit.Clubs),
+				new Card(2, Card.CardSuit.Hearts),
+				new Card(6, Card.CardSuit.Spades),
+			};
 
-				Assert.AreEqual(test1.straightArr[u], seq.ToArray()[u]);
-			}
+			Hand bestHand = new Hand();
+			Hand expectedBest = new Hand
+			{
+				new Card(10, Card.CardSuit.Diamonds),
+				new Card(10, Card.CardSuit.Spades),
+				new Card(6, Card.CardSuit.Clubs),
+				new Card(6, Card.CardSuit.Diamonds),
+				new Card(6, Card.CardSuit.Spades)
+			};
 
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
-		*/
 	}
 }
