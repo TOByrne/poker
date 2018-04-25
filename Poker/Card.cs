@@ -49,6 +49,11 @@ namespace Poker
 			return Value + SuitCode[Suit];
 		}
 
+		public Card Copy()
+		{
+			return new Card(this.Value, this.Suit);
+		}
+
 		public override bool Equals(object obj)
 		{
 			var other = obj as Card;

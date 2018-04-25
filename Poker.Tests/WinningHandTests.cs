@@ -17,6 +17,7 @@ namespace Poker.Tests
 				new Card(3, Card.CardSuit.Spades)
 			};
 
+			Hand bestHand = new Hand();
 			var isHighCard = WinningHands.HighCard(hand);
 			var highCard = new Card(10, Card.CardSuit.Diamonds);
 			var actualHighCard = WinningHands.GetHighCard(hand);
@@ -37,15 +38,16 @@ namespace Poker.Tests
 				new Card(3, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand));
+			Hand bestHand = new Hand();
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand, bestHand));
 		}
 
 		[Test]
@@ -60,15 +62,16 @@ namespace Poker.Tests
 				new Card(3, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand));
+			Hand bestHand = new Hand();
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand, bestHand));
 		}
 
 		[Test]
@@ -83,15 +86,16 @@ namespace Poker.Tests
 				new Card(3, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand));
+			Hand bestHand = new Hand();
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand, bestHand));
 		}
 
 		[Test]
@@ -106,15 +110,16 @@ namespace Poker.Tests
 				new Card(4, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand));
+			Hand bestHand = new Hand();
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand, bestHand));
 		}
 
 		[Test]
@@ -129,15 +134,16 @@ namespace Poker.Tests
 				new Card(11, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand));
+			Hand bestHand = new Hand();
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand, bestHand));
 		}
 
 		[Test]
@@ -152,15 +158,16 @@ namespace Poker.Tests
 				new Card(8, Card.CardSuit.Clubs)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand));
+			Hand bestHand = new Hand();
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand, bestHand));
 		}
 
 		[Test]
@@ -175,15 +182,16 @@ namespace Poker.Tests
 				new Card(2, Card.CardSuit.Hearts)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand));
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand));
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand));
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand));
+			Hand bestHand = new Hand();
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand, bestHand));
 		}
 
 		[Test]
@@ -198,15 +206,16 @@ namespace Poker.Tests
 				new Card(2, Card.CardSuit.Hearts)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand));
+			Hand bestHand = new Hand();
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand, bestHand));
 		}
 
 		[Test]
@@ -221,15 +230,16 @@ namespace Poker.Tests
 				new Card(6, Card.CardSuit.Clubs)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand));
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand));
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand));
+			Hand bestHand = new Hand();
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand, bestHand));
 		}
 
 		[Test]
@@ -244,15 +254,16 @@ namespace Poker.Tests
 				new Card(12, Card.CardSuit.Hearts)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand));
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand));
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand));
-			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand));
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand));
+			Hand bestHand = new Hand();
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.ThreeOfAKind](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Straight](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Flush](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsFalse(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FourOfAKind](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
 		}
 	}
 }

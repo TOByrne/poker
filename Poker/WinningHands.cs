@@ -6,7 +6,7 @@ namespace Poker
 {
 	public static class WinningHands
 	{
-		public static Dictionary<WinningHand, Func<Hand, bool>> HandCheckFuncs = new Dictionary<WinningHand, Func<Hand, bool>>
+		public static Dictionary<WinningHand, Func<Hand, Hand, bool>> HandCheckFuncs = new Dictionary<WinningHand, Func<Hand, Hand, bool>>
 		{
 			{WinningHand.RoyalFlush, RoyalFlush},
 			{WinningHand.StraightFlush, StraightFlush},
@@ -40,69 +40,69 @@ namespace Poker
 			WinningHand.ThreeOfAKind, WinningHand.TwoPair, WinningHand.Pair
 		};
 
-		private static bool RoyalFlush(Hand hand)
+		private static bool RoyalFlush(Hand hand, Hand bestHand)
 		{
 			// check if flush and high straight are true
-			return Flush(hand) && HighStraight(hand);
+			return Flush(hand, bestHand) && HighStraight(hand, bestHand);
 		}
 
-		private static bool StraightFlush(Hand hand)
+		private static bool StraightFlush(Hand hand, Hand bestHand)
 		{
 			// check if flush and straight are true.
-			return Flush(hand) && Straight(hand);
+			return Flush(hand, bestHand) && Straight(hand, bestHand);
 		}
 
-		private static bool FourOfAKind(Hand hand)
+		private static bool FourOfAKind(Hand hand, Hand bestHand)
 		{
 			//see if exactly 4 cards card the same rank.
 			return hand.GroupBy(card => card.Value).Any(group => group.Count() == 4);
 		}
 
-		private static bool FullHouse(Hand hand)
+		private static bool FullHouse(Hand hand, Hand bestHand)
 		{
 			// check if trips and pair is true
-			return Pair(hand) && ThreeOfAKind(hand);
+			return Pair(hand, bestHand) && ThreeOfAKind(hand, bestHand);
 		}
 
-		private static bool Flush(Hand hand)
+		private static bool Flush(Hand hand, Hand bestHand)
 		{
 			//see if 5 or more cards card the same rank.
 			return hand.GroupBy(card => card.Suit).Count(group => group.Count() >= 5) == 1;
 		}
 
-		private static bool Straight(Hand hand)
+		private static bool Straight(Hand hand, Hand bestHand)
 		{
-			return LowStraight(hand) || HighStraight(hand);
+			return LowStraight(hand, bestHand) || HighStraight(hand, bestHand);
 		}
 
 		//	Anything where the Ace is not > King
-		private static bool LowStraight(Hand hand)
+		private static bool LowStraight(Hand hand, Hand bestHand)
 		{
 			var ordered = hand.OrderByDescending(a => a.Value).ToList();
-
-			//	Any duplicates?
-			//	if so, then it can't possibly be a straight.
-			if (Pair(hand) || ThreeOfAKind(hand) || FourOfAKind(hand))
-			{
-				return false;
-			}
 
 			return ordered[0].Value == ordered[4].Value + 4;
 		}
 
 		//	Anything where the Ace is > King
-		private static bool HighStraight(Hand hand)
+		private static bool HighStraight(Hand hand, Hand bestHand)
 		{
-			var ordered = hand.OrderByDescending(a => a.Value).ToList();
-
-			//	Any duplicates?
-			//	if so, then it can't possibly be a straight.
-			if (Pair(hand) || ThreeOfAKind(hand) || FourOfAKind(hand))
+			//  Explicitly checking for a high-straight, so look for an ACE and set the value to 14
+			var checkHand = hand.Copy();
+			foreach (var card in checkHand)
 			{
-				return false;
+				if (card.Value == 1)
+				{
+					card.Value = 14;
+				}
 			}
+			var ordered = checkHand.OrderBy(a => a.Value).ToList();
 
-			return ordered[0].Value == ordered[4].Value + 12;
+			if (ordered[0].Value + 4 == ordered[4].Value)
+			{
+				bestHand = checkHand;
+				return true;
+			}
+			return false;
 		}
 
 		public static bool IsStraight(IEnumerable<Card> cards)
@@ -114,19 +114,19 @@ namespace Poker
 			return !doubles && inARow;
 		}
 
-		private static bool ThreeOfAKind(Hand hand)
+		private static bool ThreeOfAKind(Hand hand, Hand bestHand)
 		{
 			//see if exactly 3 cards card the same rank.
 			return hand.GroupBy(card => card.Value).Any(group => group.Count() == 3);
 		}
 
-		private static bool TwoPair(Hand hand)
+		private static bool TwoPair(Hand hand, Hand bestHand)
 		{
 			//see if there are 2 lots of exactly 2 cards card the same rank.
 			return hand.GroupBy(card => card.Value).Count(group => group.Count() >= 2) == 2;
 		}
 
-		private static bool Pair(Hand hand)
+		private static bool Pair(Hand hand, Hand bestHand)
 		{
 			//see if exactly 2 cards card the same rank.
 			return hand.GroupBy(card => card.Value).Count(group => group.Count() == 2) == 1;
@@ -135,9 +135,10 @@ namespace Poker
 		public static bool HighCard(Hand hand)
 		{
 			var thisIsHighestHand = false;
+			Hand bestHand = new Hand();
 			foreach (var check in Hands)
 			{
-				thisIsHighestHand |= HandCheckFuncs[check](hand);
+				thisIsHighestHand |= HandCheckFuncs[check](hand, bestHand);
 			}
 
 			return !thisIsHighestHand;
