@@ -127,7 +127,26 @@ namespace Poker
 		private static bool TwoPair(Hand hand, Hand bestHand)
 		{
 			//see if there are 2 lots of exactly 2 cards card the same rank.
-			return hand.GroupBy(card => card.Value).Count(group => group.Count() >= 2) >= 2;
+			var groups = hand.GroupBy(card => card.Value);
+			var pairs = groups.Where(group => group.Count() > 1);
+			var hasTwoPair = pairs.Count() >= 2;
+
+			//	High-ify any Aces
+			foreach (var grouping in pairs)
+			{
+				if (grouping.Key == 1)
+				{
+					grouping.ToList().ForEach(c => c.Value = 14);
+				}
+			}
+			var orderedPairs = pairs.OrderByDescending(p => p.Key);
+			var highestPairs = orderedPairs.Take(2); //.SelectMany<Card>(c => c.GetEnumerator().Current);
+			var bestCards = highestPairs.SelectMany(g => g.Take(g.Count()));
+
+			bestHand.Clear();
+			bestHand.AddRange(bestCards);
+
+			return hasTwoPair;
 		}
 
 		private static bool Pair(Hand hand, Hand bestHand)

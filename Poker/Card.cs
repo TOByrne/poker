@@ -30,6 +30,8 @@ namespace Poker
 			King = 13
 		}
 
+		public bool IsAce => Value == 1 || Value == 14;
+
 		public int[] CardValues = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
 		public static CardSuit[] CardSuits = { CardSuit.Clubs, CardSuit.Diamonds, CardSuit.Hearts, CardSuit.Spades };
 
@@ -57,7 +59,8 @@ namespace Poker
 		public override bool Equals(object obj)
 		{
 			var other = obj as Card;
-			return other != null && (Value == other.Value && Suit == other.Suit);
+
+			return other != null && Suit == other.Suit && (Value == other.Value || (IsAce && other.IsAce));
 		}
 	}
 }

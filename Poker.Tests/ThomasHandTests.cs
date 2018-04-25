@@ -77,7 +77,24 @@ namespace Poker.Tests
 			};
 
 			Hand bestHand = new Hand();
+			Hand expectedBest = new Hand
+			{
+				new Card(14, Card.CardSuit.Diamonds),
+				new Card(14, Card.CardSuit.Spades),
+				new Card(12, Card.CardSuit.Diamonds),
+				new Card(12, Card.CardSuit.Spades)
+			};
+			Hand altExpectedBest = new Hand
+			{
+				new Card(1, Card.CardSuit.Diamonds),
+				new Card(1, Card.CardSuit.Spades),
+				new Card(12, Card.CardSuit.Diamonds),
+				new Card(12, Card.CardSuit.Spades)
+			};
+
 			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			CollectionAssert.AreEquivalent(expectedBest, bestHand);
+			CollectionAssert.AreEquivalent(altExpectedBest, bestHand);
 		}
 
 		[Test]
@@ -95,24 +112,54 @@ namespace Poker.Tests
 			};
 
 			Hand bestHand = new Hand();
+			Hand expectedBest = new Hand
+			{
+				new Card(14, Card.CardSuit.Diamonds),
+				new Card(14, Card.CardSuit.Spades),
+				new Card(12, Card.CardSuit.Diamonds),
+				new Card(12, Card.CardSuit.Spades)
+			};
+			Hand altExpectedBest = new Hand
+			{
+				new Card(1, Card.CardSuit.Diamonds),
+				new Card(1, Card.CardSuit.Spades),
+				new Card(12, Card.CardSuit.Diamonds),
+				new Card(12, Card.CardSuit.Spades)
+			};
+
 			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			CollectionAssert.AreEquivalent(expectedBest, bestHand);
+			CollectionAssert.AreEquivalent(altExpectedBest, bestHand);
 		}
 
-		/*
 		[Test]
 		public void TwoPairTest3()
 		{
-			PokerHand test1 = new PokerHand("AD AS QD QS 6D JS TD");
-			PokerHand.HandReducer(test1);
-			char[] seq = new char[] { 'A', 'A', 'Q', 'Q', 'J' };
-			for (int u = 0; u < test1.straightArr.Length; u++)
+			var hand = new Hand
 			{
+				new Card(1, Card.CardSuit.Diamonds),
+				new Card(1, Card.CardSuit.Spades),
+				new Card(12, Card.CardSuit.Diamonds),
+				new Card(12, Card.CardSuit.Spades),
+				new Card(6, Card.CardSuit.Diamonds),
+				new Card(11, Card.CardSuit.Spades),
+				new Card(10, Card.CardSuit.Diamonds),
+			};
 
-				Assert.AreEqual(test1.straightArr[u], seq.ToArray()[u]);
-			}
+			Hand bestHand = new Hand();
+			Hand expectedBest = new Hand
+			{
+				new Card(14, Card.CardSuit.Diamonds),
+				new Card(14, Card.CardSuit.Spades),
+				new Card(12, Card.CardSuit.Diamonds),
+				new Card(12, Card.CardSuit.Spades)
+			};
 
+			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 
+		/*
 		[Test]
 		public void PairTest1()
 		{

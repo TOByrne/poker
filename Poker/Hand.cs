@@ -5,6 +5,12 @@ namespace Poker
 {
 	public class Hand : List<Card>
 	{
+		public Hand() { }
+
+		public Hand(IEnumerable<Card> collection) : base(collection)
+		{
+		}
+
 		public Hand Copy()
 		{
 			var copiedHand = new Hand();
