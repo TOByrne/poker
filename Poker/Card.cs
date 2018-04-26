@@ -63,4 +63,17 @@ namespace Poker
 			return other != null && Suit == other.Suit && (Value == other.Value || (IsAce && other.IsAce));
 		}
 	}
+
+	public class CardValueComparer : IEqualityComparer<Card>
+	{
+		public bool Equals(Card x, Card y)
+		{
+			return y != null && x != null && (x.Value == y.Value);
+		}
+
+		public int GetHashCode(Card obj)
+		{
+			return obj.Value.GetHashCode();
+		}
+	}
 }

@@ -14,6 +14,7 @@ namespace Poker
 		public Hand Copy()
 		{
 			var copiedHand = new Hand();
+			copiedHand.AddRange(this);
 			foreach (var card in this)
 			{
 				copiedHand.Add(card.Copy());

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BestHandTests.cs" />
     <Compile Include="DealerTests.cs" />
     <Compile Include="DeckTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

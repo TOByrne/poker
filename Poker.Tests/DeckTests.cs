@@ -79,6 +79,8 @@ namespace Poker.Tests
 
 			Console.WriteLine("Number of cards in the same place in the deck: " + sameCards);
 			Assert.IsTrue(sameCards < 10);
+			Assert.IsNull(deck1.CardAt(71));
+			Assert.IsNull(deck2.CardAt(71));
 		}
 	}
 }
