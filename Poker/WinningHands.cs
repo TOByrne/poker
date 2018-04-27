@@ -6,40 +6,25 @@ namespace Poker
 {
 	public static class WinningHands
 	{
-		public static Dictionary<WinningHand, Func<Hand, Hand, bool>> HandCheckFuncs = new Dictionary<WinningHand, Func<Hand, Hand, bool>>
+		public static Dictionary<HandTypes.WinningHand, Func<Hand, Hand, bool>> HandCheckFuncs = new Dictionary<HandTypes.WinningHand, Func<Hand, Hand, bool>>
 		{
-			{WinningHand.RoyalFlush, RoyalFlush},
-			{WinningHand.StraightFlush, StraightFlush},
-			{WinningHand.FourOfAKind, FourOfAKind},
-			{WinningHand.FullHouse, FullHouse},
-			{WinningHand.Flush, Flush},
-			{WinningHand.Straight, Straight},
-			{WinningHand.ThreeOfAKind, ThreeOfAKind},
-			{WinningHand.TwoPair, TwoPair},
-			{WinningHand.Pair, Pair},
-			{WinningHand.HighCard, HighCard}
+			{HandTypes.WinningHand.RoyalFlush, RoyalFlush},
+			{HandTypes.WinningHand.StraightFlush, StraightFlush},
+			{HandTypes.WinningHand.FourOfAKind, FourOfAKind},
+			{HandTypes.WinningHand.FullHouse, FullHouse},
+			{HandTypes.WinningHand.Flush, Flush},
+			{HandTypes.WinningHand.Straight, Straight},
+			{HandTypes.WinningHand.ThreeOfAKind, ThreeOfAKind},
+			{HandTypes.WinningHand.TwoPair, TwoPair},
+			{HandTypes.WinningHand.Pair, Pair},
+			{HandTypes.WinningHand.HighCard, HighCard}
 		};
 
-		//	These are in order.  Lower down the list is a better hand
-		public enum WinningHand
-		{
-			HighCard,
-			Pair,
-			TwoPair,
-			ThreeOfAKind,
-			Straight,
-			Flush,
-			FullHouse,
-			FourOfAKind,
-			StraightFlush,
-			RoyalFlush
-		}
-
 		//	This is the order in which we'd check
-		public static WinningHand[] Hands = {
-			WinningHand.RoyalFlush, WinningHand.StraightFlush, WinningHand.FourOfAKind,
-			WinningHand.FullHouse, WinningHand.Flush, WinningHand.Straight,
-			WinningHand.ThreeOfAKind, WinningHand.TwoPair, WinningHand.Pair, WinningHand.HighCard
+		public static HandTypes.WinningHand[] Hands = {
+			HandTypes.WinningHand.RoyalFlush, HandTypes.WinningHand.StraightFlush, HandTypes.WinningHand.FourOfAKind,
+			HandTypes.WinningHand.FullHouse, HandTypes.WinningHand.Flush, HandTypes.WinningHand.Straight,
+			HandTypes.WinningHand.ThreeOfAKind, HandTypes.WinningHand.TwoPair, HandTypes.WinningHand.Pair, HandTypes.WinningHand.HighCard
 		};
 
 		private static bool RoyalFlush(Hand hand, Hand bestHand)
@@ -361,7 +346,7 @@ namespace Poker
 			return hasPair;
 		}
 
-		public static WinningHand FindWinningHand(Hand hand, Hand bestHand)
+		public static HandTypes.WinningHand FindWinningHand(Hand hand, Hand bestHand)
 		{
 			foreach (var winningHand in Hands)
 			{
@@ -369,7 +354,7 @@ namespace Poker
 					return winningHand;
 			}
 
-			return WinningHand.HighCard;
+			return HandTypes.WinningHand.HighCard;
 		}
 
 		public static bool HighCard(Hand hand, Hand bestHand)
@@ -378,7 +363,7 @@ namespace Poker
 
 			foreach (var check in Hands)
 			{
-				if (check != WinningHand.HighCard)
+				if (check != HandTypes.WinningHand.HighCard)
 				{
 					thisIsHighestHand |= HandCheckFuncs[check](hand, bestHand);
 				}

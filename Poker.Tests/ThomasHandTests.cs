@@ -21,7 +21,7 @@ namespace Poker.Tests
 			};
 
 			Hand bestHand = new Hand();
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[HandTypes.WinningHand.StraightFlush](hand, bestHand));
 		}
 
 		[Test]
@@ -39,7 +39,7 @@ namespace Poker.Tests
 			};
 
 			Hand bestHand = new Hand();
-			var actual = WinningHands.HandCheckFuncs[WinningHands.WinningHand.RoyalFlush](hand, bestHand);
+			var actual = WinningHands.HandCheckFuncs[HandTypes.WinningHand.RoyalFlush](hand, bestHand);
 			Console.WriteLine(bestHand.ToString());
 			Assert.IsTrue(actual);
 		}
@@ -59,7 +59,7 @@ namespace Poker.Tests
 			};
 
 			Hand bestHand = new Hand();
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.StraightFlush](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[HandTypes.WinningHand.StraightFlush](hand, bestHand));
 		}
 
 		[Test]
@@ -92,7 +92,7 @@ namespace Poker.Tests
 				new Card(12, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[HandTypes.WinningHand.TwoPair](hand, bestHand));
 			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 			CollectionAssert.AreEquivalent(altExpectedBest, bestHand);
 		}
@@ -127,7 +127,7 @@ namespace Poker.Tests
 				new Card(12, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[HandTypes.WinningHand.TwoPair](hand, bestHand));
 			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 			CollectionAssert.AreEquivalent(altExpectedBest, bestHand);
 		}
@@ -155,7 +155,7 @@ namespace Poker.Tests
 				new Card(12, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.TwoPair](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[HandTypes.WinningHand.TwoPair](hand, bestHand));
 			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 
@@ -184,7 +184,7 @@ namespace Poker.Tests
 				new Card(14, Card.CardSuit.Spades),
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[HandTypes.WinningHand.Pair](hand, bestHand));
 			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 
@@ -214,7 +214,7 @@ namespace Poker.Tests
 				new Card(2, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.Pair](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[HandTypes.WinningHand.Pair](hand, bestHand));
 			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 
@@ -247,7 +247,7 @@ namespace Poker.Tests
 				new Card(11, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[HandTypes.WinningHand.FullHouse](hand, bestHand));
 			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 
@@ -279,7 +279,7 @@ namespace Poker.Tests
 				new Card(10, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[HandTypes.WinningHand.FullHouse](hand, bestHand));
 			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 
@@ -311,7 +311,7 @@ namespace Poker.Tests
 				new Card(6, Card.CardSuit.Spades)
 			};
 
-			Assert.IsTrue(WinningHands.HandCheckFuncs[WinningHands.WinningHand.FullHouse](hand, bestHand));
+			Assert.IsTrue(WinningHands.HandCheckFuncs[HandTypes.WinningHand.FullHouse](hand, bestHand));
 			CollectionAssert.AreEquivalent(expectedBest, bestHand);
 		}
 	}

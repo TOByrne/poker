@@ -17,7 +17,7 @@ namespace Poker.Tests
 			};
 
 			var bestHand = new Hand();
-			var expectedWin = WinningHands.WinningHand.HighCard;
+			var expectedWin = HandTypes.WinningHand.HighCard;
 			var expectedBest = new Hand
 			{
 				new Card(1, Card.CardSuit.Clubs),
@@ -41,7 +41,7 @@ namespace Poker.Tests
 			};
 
 			var bestHand = new Hand();
-			var expectedWin = WinningHands.WinningHand.Pair;
+			var expectedWin = HandTypes.WinningHand.Pair;
 			var expectedBest = new Hand
 			{
 				new Card(4, Card.CardSuit.Clubs),
@@ -68,7 +68,7 @@ namespace Poker.Tests
 			};
 
 			var bestHand = new Hand();
-			var expectedWin = WinningHands.WinningHand.TwoPair;
+			var expectedWin = HandTypes.WinningHand.TwoPair;
 			var expectedBest = new Hand
 			{
 				new Card(4, Card.CardSuit.Clubs),
@@ -96,7 +96,7 @@ namespace Poker.Tests
 			};
 
 			var bestHand = new Hand();
-			var expectedWin = WinningHands.WinningHand.ThreeOfAKind;
+			var expectedWin = HandTypes.WinningHand.ThreeOfAKind;
 			var expectedBest = new Hand
 			{
 				new Card(10, Card.CardSuit.Clubs),
@@ -127,7 +127,7 @@ namespace Poker.Tests
 			};
 
 			var bestHand = new Hand();
-			var expectedWin = WinningHands.WinningHand.Straight;
+			var expectedWin = HandTypes.WinningHand.Straight;
 			var expectedBest = new Hand
 			{
 				new Card(6, Card.CardSuit.Spades),
@@ -162,7 +162,7 @@ namespace Poker.Tests
 			};
 
 			var bestHand = new Hand();
-			var expectedWin = WinningHands.WinningHand.Flush;
+			var expectedWin = HandTypes.WinningHand.Flush;
 			var expectedBest = new Hand
 			{
 				new Card(3, Card.CardSuit.Clubs),
@@ -197,7 +197,7 @@ namespace Poker.Tests
 			};
 
 			var bestHand = new Hand();
-			var expectedWin = WinningHands.WinningHand.FullHouse;
+			var expectedWin = HandTypes.WinningHand.FullHouse;
 			var expectedBest = new Hand
 			{
 				new Card(6, Card.CardSuit.Spades),
@@ -238,7 +238,7 @@ namespace Poker.Tests
 			};
 
 			var bestHand = new Hand();
-			var expectedWin = WinningHands.WinningHand.FourOfAKind;
+			var expectedWin = HandTypes.WinningHand.FourOfAKind;
 			var expectedBest = new Hand
 			{
 				new Card(6, Card.CardSuit.Clubs),
@@ -282,7 +282,7 @@ namespace Poker.Tests
 			};
 
 			var bestHand = new Hand();
-			var expectedWin = WinningHands.WinningHand.StraightFlush;
+			var expectedWin = HandTypes.WinningHand.StraightFlush;
 			var expectedBest = new Hand
 			{
 				new Card(11, Card.CardSuit.Clubs),
@@ -319,7 +319,7 @@ namespace Poker.Tests
 			};
 
 			var bestHand = new Hand();
-			var expectedWin = WinningHands.WinningHand.RoyalFlush;
+			var expectedWin = HandTypes.WinningHand.RoyalFlush;
 			var expectedBest = new Hand
 			{
 				new Card(14, Card.CardSuit.Clubs),
