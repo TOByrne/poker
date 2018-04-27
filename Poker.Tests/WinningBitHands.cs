@@ -47,7 +47,11 @@ namespace Poker.Tests
         [Test]
         public void TestFourOfAKind()
         {
-            Assert.Inconclusive("Not yet implemented");
+            //  0000 0010 0101 1010     0000 0011 0000 0000     0001 0010 0000 0001     0000 0010 0000 0000
+            BitHand hand1 = new BitHand(0x025a030012010200);
+
+            var bestHand = new BitHand();
+            Assert.IsTrue(BitBoardHands.FourOfAKind(hand1, bestHand));
         }
 
         [Test]
