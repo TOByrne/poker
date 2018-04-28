@@ -70,8 +70,12 @@ namespace Poker.Tests
 			//  0000 0010 0101 1010     0000 0000 0000 0000     0000 0000 0000 0000     0000 0000 0000 0000
 			BitHand hand1 = new BitHand(0x025a000000000000);
 
+			//  0000 0010 0101 0010     0001 0000 0000 0000     0000 0000 0000 0000     0000 0000 0000 0000
+			BitHand hand2 = new BitHand(0x0252100000000000);
+
 			var bestHand = new BitHand();
 			Assert.IsTrue(BitBoardHands.Flush(hand1, bestHand));
+			Assert.IsFalse(BitBoardHands.Flush(hand2, bestHand));
 		}
 
 		[Test]

@@ -47,31 +47,12 @@ namespace Poker
 		{
 			var hand = startingHand.Hand;
 
-			var clubCards = hand & SuitCards[Card.CardSuit.Clubs];
-			var diamondCards = hand & SuitCards[Card.CardSuit.Diamonds];
-			var heartCards = hand & SuitCards[Card.CardSuit.Hearts];
-			var spadeCards = hand & SuitCards[Card.CardSuit.Spades];
-
 			//  0011 1110 0000 0000
 			ulong flushMask = 0x3e003e003e003e00;
 
 			while (flushMask > 0x001f001f001f001f)
 			{
-				var possibleClubFlush = flushMask & clubCards;
-				var possibleDiamondFlush = flushMask & diamondCards;
-				var possibleHeartFlush = flushMask & heartCards;
-				var possibleSpadeFlush = flushMask & spadeCards;
-
-				var handFlushMask = possibleClubFlush | possibleDiamondFlush | possibleHeartFlush |
-									possibleSpadeFlush;
-
-				var handFlush = handFlushMask & startingHand;
-
-				if (handFlush == startingHand)
-				{
-					bestHand.Reset(handFlush);
-					return true;
-				}
+				if (IsFlush(startingHand, bestHand, flushMask)) return true;
 
 				flushMask = flushMask >> 1;
 			}
@@ -114,7 +95,56 @@ namespace Poker
 
 		public static bool Flush(BitHand startingHand, BitHand bestHand)
 		{
-			throw new NotImplementedException();
+			var hand = startingHand.Hand;
+
+			var clubCards = hand & SuitCards[Card.CardSuit.Clubs];
+			var diamondCards = hand & SuitCards[Card.CardSuit.Diamonds];
+			var heartCards = hand & SuitCards[Card.CardSuit.Hearts];
+			var spadeCards = hand & SuitCards[Card.CardSuit.Spades];
+
+			//	Any 5 cards of the same suit
+			return
+				NumberOfSetBits(clubCards) > 4
+				|| NumberOfSetBits(diamondCards) > 4
+				|| NumberOfSetBits(heartCards) > 4
+				|| NumberOfSetBits(spadeCards) > 4;
+		}
+
+		private static bool IsFlush(BitHand startingHand, BitHand bestHand, ulong flushMask)
+		{
+			var hand = startingHand.Hand;
+
+			var clubCards = hand & SuitCards[Card.CardSuit.Clubs];
+			var diamondCards = hand & SuitCards[Card.CardSuit.Diamonds];
+			var heartCards = hand & SuitCards[Card.CardSuit.Hearts];
+			var spadeCards = hand & SuitCards[Card.CardSuit.Spades];
+
+			var possibleClubFlush = flushMask & clubCards;
+			var possibleDiamondFlush = flushMask & diamondCards;
+			var possibleHeartFlush = flushMask & heartCards;
+			var possibleSpadeFlush = flushMask & spadeCards;
+
+			var handFlushMask = possibleClubFlush | possibleDiamondFlush | possibleHeartFlush |
+								possibleSpadeFlush;
+
+			var handFlush = handFlushMask & startingHand;
+
+			if (handFlush == startingHand)
+			{
+				bestHand.Reset(handFlush);
+				return true;
+			}
+			return false;
+		}
+
+		//	Totally lifted from here:
+		//	https://stackoverflow.com/questions/2709430/count-number-of-bits-in-a-64-bit-long-big-integer
+		private static int NumberOfSetBits(ulong startingHand)
+		{
+			var hand = startingHand;
+			hand = hand - ((hand >> 1) & 0x5555555555555555UL);
+			hand = (hand & 0x3333333333333333UL) + ((hand >> 2) & 0x3333333333333333UL);
+			return (int)(unchecked(((hand + (hand >> 4)) & 0xF0F0F0F0F0F0F0FUL) * 0x101010101010101UL) >> 56);
 		}
 
 		public static bool Straight(BitHand startingHand, BitHand bestHand)
