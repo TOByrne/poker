@@ -57,21 +57,20 @@ namespace Poker
 
 			while (flushMask > 0x001f001f001f001f)
 			{
-				var possibleFlush = startingHand & flushMask;
+				var possibleClubFlush = flushMask & clubCards;
+				var possibleDiamondFlush = flushMask & diamondCards;
+				var possibleHeartFlush = flushMask & heartCards;
+				var possibleSpadeFlush = flushMask & spadeCards;
 
-				if (possibleFlush > 0)
+				var handFlushMask = possibleClubFlush | possibleDiamondFlush | possibleHeartFlush |
+									possibleSpadeFlush;
+
+				var handFlush = handFlushMask & startingHand;
+
+				if (handFlush == startingHand)
 				{
-					var possibleClubFlush = flushMask & clubCards;
-					var possibleDiamondFlush = flushMask & diamondCards;
-					var possibleHeartFlush = flushMask & heartCards;
-					var possibleSpadeFlush = flushMask & spadeCards;
-
-					var handFlushMask = possibleClubFlush | possibleDiamondFlush | possibleHeartFlush |
-										possibleSpadeFlush;
-
-					var handFlush = handFlushMask & startingHand;
-
 					bestHand.Reset(handFlush);
+					return true;
 				}
 
 				flushMask = flushMask >> 1;
