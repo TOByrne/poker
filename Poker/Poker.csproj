@@ -57,10 +57,21 @@
     <Compile Include="Hand.cs" />
     <Compile Include="HandTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Table.cs" />
     <Compile Include="WinningHands.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PokerInterfaces\PokerInterfaces.csproj">
+      <Project>{46B17CC3-ECE0-4F14-BB73-D2DBECC61245}</Project>
+      <Name>PokerInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PokerPlayer\PokerPlayer.csproj">
+      <Project>{A0782139-08DD-4FD4-B5A5-4C1E3D0729C0}</Project>
+      <Name>PokerPlayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

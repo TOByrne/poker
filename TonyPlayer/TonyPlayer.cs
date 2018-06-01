@@ -1,4 +1,4 @@
-﻿using PokerPlayer;
+﻿using PokerInterfaces;
 
 namespace TonyPlayer
 {

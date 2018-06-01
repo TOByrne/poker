@@ -283,6 +283,18 @@ namespace Poker
 			return (hand & SuitCards[Card.CardSuit.Clubs]);
 		}
 
+		public static HandTypes.WinningHand GetBestHand(BitHand hand, BitHand winningHand)
+		{
+			foreach (var kvp in HandCheckFuncs)
+			{
+				if (kvp.Value(hand, winningHand))
+				{
+					return kvp.Key;
+				}
+			}
+			return HandTypes.WinningHand.HighCard;
+		}
+
 		//private ulong getMax(ulong a, ulong b, ulong c)
 		//{
 		//    int temp = a ^ ((a ^ b) & -(a < b));

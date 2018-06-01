@@ -1,8 +1,9 @@
-﻿using System;
+﻿using PokerInterfaces;
+using System;
 
 namespace Poker
 {
-	public class Dealer
+	public class Dealer : IDealer
 	{
 		public Deck Deck { get; set; }
 		public Deck Discards { get; set; }

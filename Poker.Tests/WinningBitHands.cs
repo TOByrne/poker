@@ -98,10 +98,10 @@ namespace Poker.Tests
 			//  0000 0000 0000 0000     0000 0010 0100 0000     0000 0001 1000 0000     0000 0100 0000 0000
 			BitHand hand4 = new BitHand(0x3f42010101010101);
 
-			Assert.IsTrue(BitBoardHands.RoyalFlush(hand1, null));
-			Assert.IsTrue(BitBoardHands.RoyalFlush(hand2, null));
-			Assert.IsTrue(BitBoardHands.RoyalFlush(hand3, null));
-			Assert.IsTrue(BitBoardHands.RoyalFlush(hand4, null));
+			Assert.IsTrue(BitBoardHands.Straight(hand1, null));
+			Assert.IsTrue(BitBoardHands.Straight(hand2, null));
+			Assert.IsTrue(BitBoardHands.Straight(hand3, null));
+			Assert.IsTrue(BitBoardHands.Straight(hand4, null));
 		}
 
 		[Test]
